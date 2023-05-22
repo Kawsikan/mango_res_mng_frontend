@@ -1,0 +1,19 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #630059;
+    color: #fff;
+  }
+  
+  .logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+  
+  .title {
+    font-size: 24px;
+  }
+  

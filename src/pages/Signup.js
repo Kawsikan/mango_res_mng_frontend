@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './signup.css'
 
 
 const Signup = () => {
@@ -46,11 +47,11 @@ const Signup = () => {
     };
 
     return (
-        <div>
+        <div className="reservation-form-container">
             <h1>Signup</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="reservation-form">
                 <div>
-                    <label htmlFor="name">Name:</label>
+                    <label htmlFor="name" className='label-sp'>Name:</label>
                     <input
                         type="text"
                         id="name"
@@ -61,7 +62,7 @@ const Signup = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="email">Email:</label>
+                    <label htmlFor="email" className='label-sp'>Email:</label>
                     <input
                         type="email"
                         id="email"
@@ -72,7 +73,7 @@ const Signup = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="password">Password:</label>
+                    <label htmlFor="password" className='label-sp'>Password:</label>
                     <input
                         type="password"
                         id="password"
@@ -82,6 +83,7 @@ const Signup = () => {
                         required
                     />
                 </div>
+                <br />
                 <button type="submit">Sign Up</button>
             </form>
         </div>
