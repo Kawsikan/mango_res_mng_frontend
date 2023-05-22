@@ -18,8 +18,6 @@ const Login = () => {
         setPassword(e.target.value);
     }
 
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -71,8 +69,8 @@ const Login = () => {
                         required
                     />
                 </div>
-                <br/>
-                <button  class="button" type="submit">Login</button>
+                <br />
+                <button class="button" type="submit">Login</button>
             </form>
         </div>
     );

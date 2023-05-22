@@ -29,8 +29,6 @@ const Home = () => {
                 console.log("Test")
                 console.log(res.data.availableRooms[0])
                 setAvailableRooms(res.data.availableRooms);
-                // navigate('/login');
-                // window.location.reload();
             })
             .catch(err => {
                 alert("Invalid Date");
@@ -46,7 +44,6 @@ const Home = () => {
 
     return (
         <div className="landing-page">
-            {/* <img src={logo} alt="Logo" className="logo" /> */}
             <Header />
             <h1 className="title">Mango restaurant</h1>
             <form onSubmit={handleSubmit} className="form">
