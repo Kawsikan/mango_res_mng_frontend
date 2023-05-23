@@ -36,10 +36,10 @@ const Home = () => {
 
     };
 
-    const handleCardClick = (roomId) => {
+    const handleCardClick = (roomId, roomNumber) => {
         // Perform navigation to reservation page with the selected room ID
-        // navigate.push(`/reservation/${roomId}`);
-        window.location.href = `/reservation?roomId=${roomId}`;
+        navigate(`/reservation?roomId=${roomId}&roomNumber=${roomNumber}`);
+        // window.location.href = `/reservation?roomId=${roomId}&roomNumber=${roomNumber}`;
     };
 
     return (
@@ -65,7 +65,7 @@ const Home = () => {
 
             <div className="card-container">
                 {availableRooms.map(room => (
-                    <div key={room._id} className="card" onClick={() => handleCardClick(room._id)}>
+                    <div key={room._id} className="card" onClick={() => handleCardClick(room._id, room.roomNumber)}>
                         <h2 className="room-title">Room {room.roomNumber}</h2>
                         <img src={rest} alt="Logo" className="rest" />
                     </div>

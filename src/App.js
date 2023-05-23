@@ -1,13 +1,15 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
-import Home from './pages/Home';
-import Reservation from './pages/Reservation';
+// import Signup from './pages/Signup';
+// import Login from './pages/Login';
+// import Home from './pages/Home';
+// import Reservation from './pages/Reservation';
 
+const Home = lazy(() => import('./pages/Home'));
+const Login = lazy(() => import('./pages/Login'));
+const Signup = lazy(() => import('./pages/Signup'));
+const Reservation = lazy(() => import('./pages/Reservation'));
 
-// const Home = lazy(() => import('./routes/Home'));
-// const Signup = lazy(() => import('./routes/About'));
 
 const App = () => (
   <Router>

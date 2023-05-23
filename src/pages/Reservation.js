@@ -2,15 +2,24 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './reservation.css'
+import jwtDecode from 'jwt-decode';
+
 
 const Reservation = () => {
 
     const navigate = useNavigate();
     const urlParams = new URLSearchParams(window.location.search);
     const roomId = urlParams.get('roomId');
+    const roomNumber = urlParams.get('roomNumber')
+
+    const token = localStorage.getItem('token');
+    const decodedToken = jwtDecode(token);
+    const userId = decodedToken.userId;
+    const userEmail = decodedToken.email;
+    const username = userEmail.split('@')[0];
 
     const [reservationData, setReservationData] = useState({
-        guestId: '',
+        guestId: userId,
         guestName: '',
         guestEmail: '',
         room: roomId,
@@ -64,7 +73,7 @@ const Reservation = () => {
         e.preventDefault();
         await axios.post('/reservation', reservationData)
             .then(res => {
-                navigate('/login');
+                navigate('/');
                 window.location.reload();
             })
             .catch(err => {
@@ -80,15 +89,6 @@ const Reservation = () => {
             <div className="reservation-form-container">
                 <h1>Reservation Form</h1>
                 <form onSubmit={handleSubmit} className="reservation-form">
-                    <label className='label-sp'>
-                        <span>Guest ID:</span>
-                        <input
-                            type="text"
-                            name="guestId"
-                            value={reservationData.guestId}
-                            onChange={handleChange} />
-                    </label>
-                    <br />
                     <label className='label-sp'>
                         <span>Guest Name</span>
                         <input
@@ -227,8 +227,9 @@ const Reservation = () => {
 
             <div className="form-container">
                 <div className="total-amount-card">
-                    <span className="total-amount-label">Total Amount</span>
-                    <span className="total-amount-value">{reservationData.totalAmount}</span>
+                    <span className="total-amount-label">Hi! {username} your bill</span>
+                    {/* <span className="total-amount-label">Total Amount</span> */}
+                    <span className="total-amount-value">Rs.{reservationData.totalAmount}</span>
                 </div>
             </div>
         </>
