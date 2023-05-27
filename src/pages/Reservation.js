@@ -71,7 +71,12 @@ const Reservation = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post('/reservation', reservationData)
+        await axios.post('/reservation', reservationData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
             .then(res => {
                 navigate('/');
                 window.location.reload();
@@ -112,7 +117,7 @@ const Reservation = () => {
                         <input
                             type="text"
                             name="room"
-                            value={reservationData.room}
+                            value={roomNumber}
                             onChange={handleChange} />
                     </label>
                     <br />
