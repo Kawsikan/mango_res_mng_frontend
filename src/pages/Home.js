@@ -8,12 +8,16 @@ import rest from '../images/rest.jpg'
 const Home = () => {
     const navigate = useNavigate();
 
-    const [date, setDate] = useState("");
+    const [checkInDate, setCheckInDate] = useState("");
+    const [checkOutDate, setCheckOutDate] = useState("");
     const [availableRooms, setAvailableRooms] = useState([]);
 
 
-    const onChangeDate = (e) => {
-        setDate(e.target.value);
+    const onChangeCheckInDate = (e) => {
+        setCheckInDate(e.target.value);
+    }
+    const onChangeCheckOutDate = (e) => {
+        setCheckOutDate(e.target.value);
     }
 
 
@@ -21,12 +25,13 @@ const Home = () => {
         e.preventDefault();
 
         let availability = {
-            date: date
+            startDate: checkInDate,
+            endDate: checkOutDate
         }
 
-        await axios.post('/reservation/check-availability', availability)
+        await axios.post('/reservation/check-availability-range', availability)
             .then(res => {
-                console.log("Test")
+                console.log("reservation working")
                 console.log(res.data.availableRooms[0])
                 setAvailableRooms(res.data.availableRooms);
             })
@@ -48,13 +53,25 @@ const Home = () => {
             <h1 className="title">Mango restaurant</h1>
             <form onSubmit={handleSubmit} className="form">
                 <div className="form-group">
-                    <label htmlFor="date" className="label">Date:</label>
+                    <label htmlFor="checkInDate" className="label">Check in Date:</label>
                     <input
                         type="date"
-                        id="date"
-                        name="date"
-                        value={date}
-                        onChange={onChangeDate}
+                        id="checkInDate"
+                        name="checkInDate"
+                        value={checkInDate}
+                        onChange={onChangeCheckInDate}
+                        className="input"
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="checkOutDate" className="label">Check out Date:</label>
+                    <input
+                        type="date"
+                        id="checkOutDate"
+                        name="checkOutDate"
+                        value={checkOutDate}
+                        onChange={onChangeCheckOutDate}
                         className="input"
                         required
                     />
